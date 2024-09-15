@@ -104,7 +104,6 @@ head_animation_index = 0;
             <kind>1</kind>
             <string>/// Bodypart Positioning (Inverse Kinematics ?)
 
-
 // Define "Ideal" Body
 foot_1_x = x;
 foot_1_y = y;
