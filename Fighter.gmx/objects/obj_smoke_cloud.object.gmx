@@ -95,6 +95,9 @@ y -= 0.5;
             <kind>1</kind>
             <string>/// Draw Self
 
+//shadow
+draw_sprite_ext(spr_smoke_cloud,image_index,scr_get_perspective_x(x,room_width,16),y,1,1,1,c_black,0.4)
+
 draw_sprite(spr_smoke_cloud,image_index,x,y)
 </string>
           </argument>

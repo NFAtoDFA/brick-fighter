@@ -8,6 +8,32 @@
   <parentName>obj_parent_pawn</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Init
+event_inherited();
+
+head_anim_last = head_animation;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -123,6 +149,19 @@ if cigarette_state &gt;= 5
     cigarette_state = 0;
 }
 
+cigarette_x = head_x + 6;
+cigarette_y = head_y + 2;
+cigarette_rot = -15;
+cigarette_depth = 0;
+
+if(head_animation)
+{
+    cigarette_x = hand_2_x + 2;
+    cigarette_y = hand_2_y;
+    cigarette_rot = 10;
+    cigarette_depth = 4;
+}
+
 </string>
           </argument>
         </arguments>
@@ -175,6 +214,113 @@ if (y &gt; 100)
 }
 
 y += yspd;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hand Animation When Putting in cigarette
+
+if (head_animation != head_anim_last)
+{
+    head_anim_last = head_animation;
+    hand_2_x = head_x + 4;
+    hand_2_y = head_y + 4;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Cigarette Shadow
+
+draw_sprite_ext(spr_cigarette_shadow,cigarette_state,scr_get_perspective_x(cigarette_x,room_width,16),cigarette_y,1,1,cigarette_rot,-1,1);
+
+if(head_animation){
+    draw_sprite_ext(spr_cigarette,cigarette_state,scr_get_perspective_x(cigarette_x,room_width,cigarette_depth),cigarette_y,1,1,cigarette_rot,-1,1);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Inherit From Pawn
+
+event_inherited();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw Cigarette
+
+if !head_animation {
+
+draw_sprite_ext(spr_cigarette,cigarette_state,scr_get_perspective_x(cigarette_x,room_width,cigarette_depth),cigarette_y,1,1,cigarette_rot,-1,1);
+
+}
 </string>
           </argument>
         </arguments>

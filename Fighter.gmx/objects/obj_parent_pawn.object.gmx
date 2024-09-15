@@ -224,6 +224,17 @@ if(head_animation)
             <kind>1</kind>
             <string>/// Main Draw
 
+// Draw Shadows
+draw_sprite(spr_shadow_big,0,scr_get_perspective_x(head_x,room_width,16),head_y)
+draw_sprite(spr_shadow_big,0,scr_get_perspective_x(body_x,room_width,16),body_y)
+draw_sprite(spr_shadow_small,0,scr_get_perspective_x(hand_1_x,room_width,16),hand_1_y)//
+draw_sprite(spr_shadow_small,0,scr_get_perspective_x(shoulder_1_x,room_width,16),shoulder_1_y)
+draw_sprite(spr_shadow_small,0,scr_get_perspective_x(foot_1_x,room_width,16),foot_1_y)//
+draw_sprite(spr_shadow_small,0,scr_get_perspective_x(hand_2_x,room_width,16),hand_2_y)//
+draw_sprite(spr_shadow_small,0,scr_get_perspective_x(shoulder_2_x,room_width,16),shoulder_2_y)
+draw_sprite(spr_shadow_small,0,scr_get_perspective_x(foot_2_x,room_width,16),foot_2_y)//
+
+// Draw Body
 draw_sprite(spr_player_hand_2,0,scr_get_perspective_x(hand_2_x,room_width,4),hand_2_y);
 draw_sprite(spr_player_foot_2,0,scr_get_perspective_x(foot_2_x,room_width,4),foot_2_y);
 
