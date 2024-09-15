@@ -25,23 +25,61 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Define Sprites
+
+shoulder_sprite = spr_player_shoulder;
+head_sprite = spr_player_head;
+head_animation_sprite = spr_player_head_anim;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// Init
 
-body_x = 0;
-body_y = 0;
+body_x = x;
+body_y = y;
 
-hand_2_x = 500;
-hand_2_y = 123;
+hand_2_x = x;
+hand_2_y = y;
 
-hand_1_y = 500;
-hand_1_x = 123;
+hand_1_y = y;
+hand_1_x = x;
 
-head_x = 0;
-head_y = 0;
+shoulder_2_x = x;
+shoulder_2_y = y;
+
+shoulder_1_y = y;
+shoulder_1_x = x;
+
+head_x = x;
+head_y = y;
 
 yspd = 0;
 
 in_air = true;
+
+cigarette_state = 0;
+
+body_adhesion = 0.6;
+
+head_animation = false;
+head_animation_index = 0;
 </string>
           </argument>
         </arguments>
@@ -68,37 +106,100 @@ in_air = true;
 
 
 // Define "Ideal" Body
-foot_1_x = x-2;
+foot_1_x = x;
 foot_1_y = y;
 
-foot_2_x = x+2;
+foot_2_x = x;
 foot_2_y = y;
 
 body_dest_x = x;
 body_dest_y = y - 12;
 
-hand_2_dest_x = body_x + 2;
-hand_2_dest_y = body_y - 2;
+shoulder_2_dest_x = body_x;
+shoulder_2_dest_y = body_y - 2;
 
-hand_1_dest_x = body_x - 2;
-hand_1_dest_y = body_y - 2;
+shoulder_1_dest_x = body_x;
+shoulder_1_dest_y = body_y - 2;
+
+hand_2_dest_x = shoulder_2_x;
+hand_2_dest_y = shoulder_2_y + 8;
+
+hand_1_dest_x = shoulder_1_x;
+hand_1_dest_y = shoulder_1_y + 8;
 
 head_dest_x = body_x;
 head_dest_y = body_y - 12;
 
 
 // "Accelerate" Bodyparts Accordingly
-body_x += (body_dest_x - body_x)*0.3;
-body_y += (body_dest_y - body_y)*0.3;
+body_x += (body_dest_x - body_x)*body_adhesion;
+body_y += (body_dest_y - body_y)*body_adhesion;
 
-hand_2_x += (hand_2_dest_x - hand_2_x)*0.3;
-hand_2_y += (hand_2_dest_y - hand_2_y)*0.3;
+hand_2_x += (hand_2_dest_x - hand_2_x)*body_adhesion;
+hand_2_y += (hand_2_dest_y - hand_2_y)*body_adhesion;
 
-hand_1_x += (hand_1_dest_x - hand_1_x)*0.3;
-hand_1_y += (hand_1_dest_y - hand_1_y)*0.3;
+hand_1_x += (hand_1_dest_x - hand_1_x)*body_adhesion;
+hand_1_y += (hand_1_dest_y - hand_1_y)*body_adhesion;
 
-head_x += (head_dest_x - head_x)*0.25;
-head_y += (head_dest_y - head_y)*0.25;
+shoulder_2_x += (shoulder_2_dest_x - shoulder_2_x)*body_adhesion;
+shoulder_2_y += (shoulder_2_dest_y - shoulder_2_y)*body_adhesion;
+
+shoulder_1_x += (shoulder_1_dest_x - shoulder_1_x)*body_adhesion;
+shoulder_1_y += (shoulder_1_dest_y - shoulder_1_y)*body_adhesion;
+
+head_x += (head_dest_x - head_x)*body_adhesion;
+head_y += (head_dest_y - head_y)*body_adhesion;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Head Animation
+
+if (keyboard_check_pressed(vk_control))
+{
+    head_animation_rising = true;
+    head_animation = true;
+    head_animation_index = 0;   
+}
+
+if(head_animation)
+{
+    if(head_animation_rising)
+    {
+        head_animation_index++;
+    } else {
+        head_animation_index--;
+    }
+    if(head_animation_index &gt;= 8)
+    {
+        if !keyboard_check(vk_control)
+        {
+            head_animation_rising = false;
+        }
+        head_animation_index = 7;
+    }
+    if(head_animation_index &lt;= 0)
+    {
+        head_animation_index = 0;
+        head_animation = false;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -123,12 +224,19 @@ head_y += (head_dest_y - head_y)*0.25;
             <kind>1</kind>
             <string>/// Main Draw
 
-draw_sprite(spr_player_hand_2,0,hand_2_x,hand_2_y);
-draw_sprite(spr_player_foot_2,0,foot_2_x,foot_2_y);
+draw_sprite(spr_player_hand_2,0,scr_get_perspective_x(hand_2_x,room_width,4),hand_2_y);
+draw_sprite(spr_player_foot_2,0,scr_get_perspective_x(foot_2_x,room_width,4),foot_2_y);
+
+draw_sprite(shoulder_sprite,1,scr_get_perspective_x(shoulder_2_x,room_width,4),shoulder_2_y);
+
 draw_sprite(spr_player_body,0,body_x,body_y);
-draw_sprite(spr_player_head,0,head_x,head_y);
-draw_sprite(spr_player_foot_1,0,foot_1_x,foot_1_y);
-draw_sprite(spr_player_hand_1,0,hand_1_x,hand_1_y);
+
+draw_sprite(head_animation_sprite,head_animation_index,head_x,head_y);
+
+draw_sprite(shoulder_sprite,0,scr_get_perspective_x(shoulder_1_x,room_width,-4),shoulder_1_y);
+
+draw_sprite(spr_player_foot_1,0,scr_get_perspective_x(foot_1_x,room_width,-4),foot_1_y);
+draw_sprite(spr_player_hand_1,0,scr_get_perspective_x(hand_1_x,room_width,-4),hand_1_y);
 </string>
           </argument>
         </arguments>
