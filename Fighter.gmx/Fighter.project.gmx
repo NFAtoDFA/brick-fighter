@@ -24,9 +24,15 @@
         <sprite>sprites\spr_player_head</sprite>
         <sprite>sprites\spr_player_hand_1</sprite>
       </sprites>
+      <sprite>sprites\spr_enemy_head</sprite>
+      <sprite>sprites\spr_enemy_head_anim</sprite>
     </sprites>
     <sprite>sprites\spr_shadow_small</sprite>
     <sprite>sprites\spr_shadow_big</sprite>
+    <sprite>sprites\spr_cigarette_ragdoll</sprite>
+    <sprite>sprites\spr_floor</sprite>
+    <sprite>sprites\spr_helmet</sprite>
+    <sprite>sprites\spr_mala</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -36,12 +42,20 @@
   <objects name="objects">
     <objects name="Pawns">
       <object>objects\obj_player</object>
+      <object>objects\obj_enemy</object>
       <object>objects\obj_parent_pawn</object>
     </objects>
     <object>objects\obj_smoke_cloud</object>
+    <object>objects\obj_cigarette_ragdoll</object>
+    <object>objects\obj_world_controller</object>
+    <object>objects\obj_floor</object>
+    <object>objects\obj_hardhat</object>
+    <object>objects\obj_hatborder</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room2</room>
+    <room>rooms\room1</room>
+    <room>rooms\room3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

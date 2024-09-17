@@ -80,6 +80,8 @@ body_adhesion = 0.6;
 
 head_animation = false;
 head_animation_index = 0;
+
+dir = 1;
 </string>
           </argument>
         </arguments>
@@ -224,29 +226,29 @@ if(head_animation)
             <string>/// Main Draw
 
 // Draw Shadows
-draw_sprite(spr_shadow_big,0,scr_get_perspective_x(head_x,room_width,16),head_y)
-draw_sprite(spr_shadow_big,0,scr_get_perspective_x(body_x,room_width,16),body_y)
-draw_sprite(spr_shadow_small,0,scr_get_perspective_x(hand_1_x,room_width,16),hand_1_y)//
-draw_sprite(spr_shadow_small,0,scr_get_perspective_x(shoulder_1_x,room_width,16),shoulder_1_y)
-draw_sprite(spr_shadow_small,0,scr_get_perspective_x(foot_1_x,room_width,16),foot_1_y)//
-draw_sprite(spr_shadow_small,0,scr_get_perspective_x(hand_2_x,room_width,16),hand_2_y)//
-draw_sprite(spr_shadow_small,0,scr_get_perspective_x(shoulder_2_x,room_width,16),shoulder_2_y)
-draw_sprite(spr_shadow_small,0,scr_get_perspective_x(foot_2_x,room_width,16),foot_2_y)//
+draw_sprite_ext(spr_shadow_big,0,scr_get_perspective_x(head_x,room_width,16),head_y,dir,1,0,-1,1)
+draw_sprite_ext(spr_shadow_big,0,scr_get_perspective_x(body_x,room_width,16),body_y,dir,1,0,-1,1)
+draw_sprite_ext(spr_shadow_small,0,scr_get_perspective_x(hand_1_x,room_width,16),hand_1_y,dir,1,0,1,1)//
+draw_sprite_ext(spr_shadow_small,0,scr_get_perspective_x(shoulder_1_x,room_width,16),shoulder_1_y,dir,1,0,-1,1)
+draw_sprite_ext(spr_shadow_small,0,scr_get_perspective_x(foot_1_x,room_width,16),foot_1_y,dir,1,0,-1,1)//
+draw_sprite_ext(spr_shadow_small,0,scr_get_perspective_x(hand_2_x,room_width,16),hand_2_y,dir,1,0,-1,1)//
+draw_sprite_ext(spr_shadow_small,0,scr_get_perspective_x(shoulder_2_x,room_width,16),shoulder_2_y,dir,1,0,-1,1)
+draw_sprite_ext(spr_shadow_small,0,scr_get_perspective_x(foot_2_x,room_width,16),foot_2_y,dir,1,0,-1,1)//
 
 // Draw Body
-draw_sprite(spr_player_hand_2,0,scr_get_perspective_x(hand_2_x,room_width,4),hand_2_y);
-draw_sprite(spr_player_foot_2,0,scr_get_perspective_x(foot_2_x,room_width,4),foot_2_y);
+draw_sprite_ext(spr_player_hand_2,0,scr_get_perspective_x(hand_2_x,room_width,4),hand_2_y,dir,1,0,-1,1);
+draw_sprite_ext(spr_player_foot_2,0,scr_get_perspective_x(foot_2_x,room_width,4),foot_2_y,dir,1,0,-1,1);
 
-draw_sprite(shoulder_sprite,1,scr_get_perspective_x(shoulder_2_x,room_width,4),shoulder_2_y);
+draw_sprite_ext(shoulder_sprite,1,scr_get_perspective_x(shoulder_2_x,room_width,4),shoulder_2_y,dir,1,0,-1,1);
 
-draw_sprite(spr_player_body,0,body_x,body_y);
+draw_sprite_ext(spr_player_body,0,body_x,body_y,dir,1,0,-1,1);
 
-draw_sprite(head_animation_sprite,head_animation_index,head_x,head_y);
+draw_sprite_ext(head_animation_sprite,head_animation_index,head_x,head_y,dir,1,0,-1,1);
 
-draw_sprite(shoulder_sprite,0,scr_get_perspective_x(shoulder_1_x,room_width,-4),shoulder_1_y);
+draw_sprite_ext(shoulder_sprite,0,scr_get_perspective_x(shoulder_1_x,room_width,-4),shoulder_1_y,dir,1,0,-1,1);
 
-draw_sprite(spr_player_foot_1,0,scr_get_perspective_x(foot_1_x,room_width,-4),foot_1_y);
-draw_sprite(spr_player_hand_1,0,scr_get_perspective_x(hand_1_x,room_width,-4),hand_1_y);
+draw_sprite_ext(spr_player_foot_1,0,scr_get_perspective_x(foot_1_x,room_width,-4),foot_1_y,dir,1,0,-1,1);
+draw_sprite_ext(spr_player_hand_1,0,scr_get_perspective_x(hand_1_x,room_width,-4),hand_1_y,dir,1,0,-1,1);
 </string>
           </argument>
         </arguments>
